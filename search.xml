@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo--部署到gitee(码云)</title>
+    <url>/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/</url>
+    <content><![CDATA[<h1 id="Hexo–部署到gitee-码云"><a href="#Hexo–部署到gitee-码云" class="headerlink" title="Hexo–部署到gitee(码云)"></a>Hexo–部署到gitee(码云)</h1><h2 id="一、使用前提"><a href="#一、使用前提" class="headerlink" title="一、使用前提"></a>一、使用前提</h2><ul>
+<li>当前针对<strong>已经安装好hexo</strong>，并且部署到github上了，没部署到github上也可以</li>
+<li>针对上一个可以看我博客主页，有一个<strong>Hexo搭建个人博客到github（小白+无坑版）</strong>查看即可</li>
+</ul>
+<h2 id="二、具体流程"><a href="#二、具体流程" class="headerlink" title="二、具体流程"></a>二、具体流程</h2><ol>
+<li><p>注册登录码云</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">码云官网：https:<span class="comment">//gitee.com/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建议用邮箱注册，以后都用一个邮箱注册其他东西</li>
+</ul>
+</li>
+<li><p>新建仓库，复制链接</p>
+<ul>
+<li><p>加号==》新建仓库</p>
+</li>
+<li><p>图片演示</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_01.png" alt></p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_02.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>修改配置文件</p>
+<ul>
+<li><p>文件位置：hexo<strong>根目录下的_config.yml</strong>文件</p>
+</li>
+<li><p>修改配置</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_03.png" alt></p>
+</li>
+</ul>
+</li>
+<li><p>部署命令</p>
+<ul>
+<li><p>打开博客根目录，在文件路径上直接cmd，也可以用git bash写（在根目录右键选择 git bash）</p>
+</li>
+<li><p>命令</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//如果安装了淘宝镜像直接吧npm缓称cnpm</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入完之后会让让你输入gitee的账号密码，直接输入即可</p>
+</li>
+</ul>
+</li>
+<li><p>部署到码云的免费静态页面托管服务—Pages</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_04.png" alt></p>
+</li>
+</ol>
+<h2 id="三、踩过的坑"><a href="#三、踩过的坑" class="headerlink" title="三、踩过的坑"></a>三、踩过的坑</h2><ol>
+<li><p>一直部署不上去</p>
+<ul>
+<li>可能没有写 npm install hexo-deployer-git –save</li>
+</ul>
+</li>
+<li><p>如果配到其他问题，可以参考以下截图，试试</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_05.png" alt></p>
+</li>
+</ol>
+<h2 id="四、参考文献"><a href="#四、参考文献" class="headerlink" title="四、参考文献"></a>四、参考文献</h2><ul>
+<li>感谢大哥</li>
+<li><a href="https://my.oschina.net/ruowu/blog/1492038" target="_blank" rel="noopener">https://my.oschina.net/ruowu/blog/1492038</a></li>
+</ul>
+<h2 id="五、干就完事了"><a href="#五、干就完事了" class="headerlink" title="五、干就完事了"></a>五、干就完事了</h2>]]></content>
+  </entry>
+  <entry>
     <title>HTMLCSS---定位</title>
     <url>/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/</url>
     <content><![CDATA[<h1 id="HTML-CSS—定位"><a href="#HTML-CSS—定位" class="headerlink" title="HTML/CSS—定位"></a>HTML/CSS—定位</h1><h2 id="一、绝对定位"><a href="#一、绝对定位" class="headerlink" title="一、绝对定位"></a>一、绝对定位</h2><ol>
@@ -80,6 +145,11 @@
 </li>
 </ol>
 ]]></content>
+  </entry>
+  <entry>
+    <title>快捷键</title>
+    <url>/2020/07/30/%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+    <content><![CDATA[<h1 id="一、IDEA"><a href="#一、IDEA" class="headerlink" title="一、IDEA"></a>一、IDEA</h1><h2 id="1-选择相同变量名—Shift-F6"><a href="#1-选择相同变量名—Shift-F6" class="headerlink" title="1. 选择相同变量名—Shift+F6"></a>1. 选择相同变量名—Shift+F6</h2><h2 id="2-导包—Shift-Ait-Enter"><a href="#2-导包—Shift-Ait-Enter" class="headerlink" title="2. 导包—Shift+Ait+Enter"></a>2. 导包—Shift+Ait+Enter</h2><h2 id="3-运行当前代码—Ctrl-Shift-F10"><a href="#3-运行当前代码—Ctrl-Shift-F10" class="headerlink" title="3. 运行当前代码—Ctrl+Shift+F10"></a>3. 运行当前代码—Ctrl+Shift+F10</h2><h2 id="4-进入控制台—F12"><a href="#4-进入控制台—F12" class="headerlink" title="4. 进入控制台—F12"></a>4. 进入控制台—F12</h2><h2 id="5-格式化代码—Ctrl-Alt-L"><a href="#5-格式化代码—Ctrl-Alt-L" class="headerlink" title="5. 格式化代码—Ctrl+Alt+L"></a>5. 格式化代码—Ctrl+Alt+L</h2><h1 id="二、全局快捷键"><a href="#二、全局快捷键" class="headerlink" title="二、全局快捷键"></a>二、全局快捷键</h1><h2 id="1-关闭对话框—Alt-F4"><a href="#1-关闭对话框—Alt-F4" class="headerlink" title="1. 关闭对话框—Alt+F4"></a>1. 关闭对话框—Alt+F4</h2>]]></content>
   </entry>
   <entry>
     <title>Hexo--插入图片(小白+防坑)</title>
@@ -180,70 +250,14 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Hexo--部署到gitee(码云)</title>
-    <url>/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/</url>
-    <content><![CDATA[<h1 id="Hexo–部署到gitee-码云"><a href="#Hexo–部署到gitee-码云" class="headerlink" title="Hexo–部署到gitee(码云)"></a>Hexo–部署到gitee(码云)</h1><h2 id="一、使用前提"><a href="#一、使用前提" class="headerlink" title="一、使用前提"></a>一、使用前提</h2><ul>
-<li>当前针对<strong>已经安装好hexo</strong>，并且部署到github上了，没部署到github上也可以</li>
-<li>针对上一个可以看我博客主页，有一个<strong>Hexo搭建个人博客到github（小白+无坑版）</strong>查看即可</li>
-</ul>
-<h2 id="二、具体流程"><a href="#二、具体流程" class="headerlink" title="二、具体流程"></a>二、具体流程</h2><ol>
-<li><p>注册登录码云</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">码云官网：https:<span class="comment">//gitee.com/</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>建议用邮箱注册，以后都用一个邮箱注册其他东西</li>
-</ul>
-</li>
-<li><p>新建仓库，复制链接</p>
-<ul>
-<li><p>加号==》新建仓库</p>
-</li>
-<li><p>图片演示</p>
-<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_01.png" alt></p>
-<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_02.png" alt></p>
-</li>
-</ul>
-</li>
-<li><p>修改配置文件</p>
-<ul>
-<li><p>文件位置：hexo<strong>根目录下的_config.yml</strong>文件</p>
-</li>
-<li><p>修改配置</p>
-<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_03.png" alt></p>
-</li>
-</ul>
-</li>
-<li><p>部署命令</p>
-<ul>
-<li><p>打开博客根目录，在文件路径上直接cmd，也可以用git bash写（在根目录右键选择 git bash）</p>
-</li>
-<li><p>命令</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//如果安装了淘宝镜像直接吧npm缓称cnpm</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输入完之后会让让你输入gitee的账号密码，直接输入即可</p>
-</li>
-</ul>
-</li>
-<li><p>部署到码云的免费静态页面托管服务—Pages</p>
-<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_04.png" alt></p>
-</li>
-</ol>
-<h2 id="三、踩过的坑"><a href="#三、踩过的坑" class="headerlink" title="三、踩过的坑"></a>三、踩过的坑</h2><ol>
-<li><p>一直部署不上去</p>
-<ul>
-<li>可能没有写 npm install hexo-deployer-git –save</li>
-</ul>
-</li>
-<li><p>如果配到其他问题，可以参考以下截图，试试</p>
-<p><img src= "/img/loading.gif" data-src="/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/image_05.png" alt></p>
-</li>
-</ol>
-<h2 id="四、参考文献"><a href="#四、参考文献" class="headerlink" title="四、参考文献"></a>四、参考文献</h2><ul>
-<li>感谢大哥</li>
-<li><a href="https://my.oschina.net/ruowu/blog/1492038" target="_blank" rel="noopener">https://my.oschina.net/ruowu/blog/1492038</a></li>
-</ul>
-<h2 id="五、干就完事了"><a href="#五、干就完事了" class="headerlink" title="五、干就完事了"></a>五、干就完事了</h2><p>gitee: <a href="https://gitee.com/maomaocode/MaoMaoCode.git" target="_blank" rel="noopener">https://gitee.com/maomaocode/MaoMaoCode.git</a></p>
-<p>​     github: <a href="https://github.com/TsnaTsna/TsnaTsna.github.io.git" target="_blank" rel="noopener">https://github.com/TsnaTsna/TsnaTsna.github.io.git</a></p>
+    <title>我的第一篇博客文章</title>
+    <url>/2020/07/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
+<hr>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>内容</p>
+<hr>
+<p>##参考文献</p>
+<p><a href="http://www.codesheep.cn" target="_blank" rel="noopener">www.codesheep.cn</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -262,22 +276,6 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>快捷键</title>
-    <url>/2020/07/30/%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
-    <content><![CDATA[<h1 id="一、IDEA"><a href="#一、IDEA" class="headerlink" title="一、IDEA"></a>一、IDEA</h1><h2 id="1-选择相同变量名—Shift-F6"><a href="#1-选择相同变量名—Shift-F6" class="headerlink" title="1. 选择相同变量名—Shift+F6"></a>1. 选择相同变量名—Shift+F6</h2><h2 id="2-导包—Shift-Ait-Enter"><a href="#2-导包—Shift-Ait-Enter" class="headerlink" title="2. 导包—Shift+Ait+Enter"></a>2. 导包—Shift+Ait+Enter</h2><h2 id="3-运行当前代码—Ctrl-Shift-F10"><a href="#3-运行当前代码—Ctrl-Shift-F10" class="headerlink" title="3. 运行当前代码—Ctrl+Shift+F10"></a>3. 运行当前代码—Ctrl+Shift+F10</h2><h2 id="4-进入控制台—F12"><a href="#4-进入控制台—F12" class="headerlink" title="4. 进入控制台—F12"></a>4. 进入控制台—F12</h2><h2 id="5-格式化代码—Ctrl-Alt-L"><a href="#5-格式化代码—Ctrl-Alt-L" class="headerlink" title="5. 格式化代码—Ctrl+Alt+L"></a>5. 格式化代码—Ctrl+Alt+L</h2><h1 id="二、全局快捷键"><a href="#二、全局快捷键" class="headerlink" title="二、全局快捷键"></a>二、全局快捷键</h1><h2 id="1-关闭对话框—Alt-F4"><a href="#1-关闭对话框—Alt-F4" class="headerlink" title="1. 关闭对话框—Alt+F4"></a>1. 关闭对话框—Alt+F4</h2>]]></content>
-  </entry>
-  <entry>
-    <title>我的第一篇博客文章</title>
-    <url>/2020/07/25/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
-<hr>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><p>内容</p>
-<hr>
-<p>##参考文献</p>
-<p><a href="http://www.codesheep.cn" target="_blank" rel="noopener">www.codesheep.cn</a></p>
 ]]></content>
   </entry>
   <entry>
