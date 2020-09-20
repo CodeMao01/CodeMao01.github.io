@@ -1,6 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HTMLCSS---定位</title>
+    <url>/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/</url>
+    <content><![CDATA[<h1 id="HTML-CSS—定位"><a href="#HTML-CSS—定位" class="headerlink" title="HTML/CSS—定位"></a>HTML/CSS—定位</h1><h2 id="一、绝对定位"><a href="#一、绝对定位" class="headerlink" title="一、绝对定位"></a>一、绝对定位</h2><ol>
+<li><p>定义</p>
+<ul>
+<li>相对于父容器移动相应的位置，即<strong>参考对象是父容器</strong>。如果没有父容器，则一直向外找，直到最后的浏览器本身。父容器本身必须有position:relative</li>
+<li>自身<strong>原来的位置不保留</strong>，会被下面的元素占据</li>
+</ul>
+</li>
+<li><p>格式</p>
+<ul>
+<li>position:absolute</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>top、bottom、left、right</li>
+</ul>
+</li>
+<li><p>案例</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span>&#123;</span></span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				width: 500px;</span><br><span class="line">				height: 500px;</span><br><span class="line">				border: 1px solid red;</span><br><span class="line">				position: relative;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span> <span class="selector-tag">div</span>&#123;</span></span><br><span class="line">				width: 100px;</span><br><span class="line">				height: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_01</span>&#123;</span></span><br><span class="line">				background: red;</span><br><span class="line">				position: absolute;</span><br><span class="line">				top: 50px;</span><br><span class="line">				left: 50px;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_02</span>&#123;</span></span><br><span class="line">				background: blue;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_01"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_02"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/absolute.png" alt="absolute"></p>
+</li>
+</ol>
+<h2 id="二、相对定位"><a href="#二、相对定位" class="headerlink" title="二、相对定位"></a>二、相对定位</h2><ol>
+<li><p>定义</p>
+<ul>
+<li><p>相对于自身来进行定位，即<strong>参考对象是自身</strong></p>
+</li>
+<li><p>自身<strong>位置保留</strong>，下面元素不会占据自己的原有位置</p>
+</li>
+</ul>
+</li>
+<li><p>格式</p>
+<ul>
+<li>position:relative</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>top、bottom、left、right</li>
+</ul>
+</li>
+<li><p>案例</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span>&#123;</span></span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				width: 500px;</span><br><span class="line">				height: 500px;</span><br><span class="line">				border: 1px solid red;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span> <span class="selector-tag">div</span>&#123;</span></span><br><span class="line">				width: 100px;</span><br><span class="line">				height: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_01</span>&#123;</span></span><br><span class="line">				background: red;</span><br><span class="line">				position: relative;</span><br><span class="line">				top: 50px;</span><br><span class="line">				left: 50px;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_02</span>&#123;</span></span><br><span class="line">				background: blue;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_01"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_02"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/relative.png" alt="relative"></p>
+</li>
+</ol>
+<h2 id="三、浮动定位"><a href="#三、浮动定位" class="headerlink" title="三、浮动定位"></a>三、浮动定位</h2><ol>
+<li><p>定义</p>
+<ul>
+<li>相对于浏览器移动，即<strong>参考对象是浏览器</strong></li>
+<li>本身<strong>位置不保留</strong>，会被下面元素占据自身位置</li>
+</ul>
+</li>
+<li><p>格式</p>
+<ul>
+<li>position:fixed</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>top、bottom、left、right</li>
+</ul>
+</li>
+<li><p>用途</p>
+<ul>
+<li>锚点</li>
+</ul>
+</li>
+<li><p>案例</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span>&#123;</span></span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				width: 500px;</span><br><span class="line">				height: 500px;</span><br><span class="line">				border: 1px solid red;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span> <span class="selector-tag">div</span>&#123;</span></span><br><span class="line">				width: 100px;</span><br><span class="line">				height: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_01</span>&#123;</span></span><br><span class="line">				background: red;</span><br><span class="line">				position: relative;</span><br><span class="line">				top: 50px;</span><br><span class="line">				left: 50px;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_02</span>&#123;</span></span><br><span class="line">				background: blue;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_01"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_02"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-src="/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/fixed.png" alt="fixed"></p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>Hexo--插入图片(小白+防坑)</title>
     <url>/2020/07/30/Hexo--%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87(%E5%B0%8F%E7%99%BD+%E9%98%B2%E5%9D%91)/</url>
     <content><![CDATA[<h1 id="Hexo—插入图片（小白-防坑）"><a href="#Hexo—插入图片（小白-防坑）" class="headerlink" title="Hexo—插入图片（小白+防坑）"></a>Hexo—插入图片（小白+防坑）</h1><h2 id="一、具体流程"><a href="#一、具体流程" class="headerlink" title="一、具体流程"></a>一、具体流程</h2><ol>
@@ -99,87 +180,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>HTMLCSS---定位</title>
-    <url>/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/</url>
-    <content><![CDATA[<h1 id="HTML-CSS—定位"><a href="#HTML-CSS—定位" class="headerlink" title="HTML/CSS—定位"></a>HTML/CSS—定位</h1><h2 id="一、绝对定位"><a href="#一、绝对定位" class="headerlink" title="一、绝对定位"></a>一、绝对定位</h2><ol>
-<li><p>定义</p>
-<ul>
-<li>相对于父容器移动相应的位置，即<strong>参考对象是父容器</strong>。如果没有父容器，则一直向外找，直到最后的浏览器本身。父容器本身必须有position:relative</li>
-<li>自身<strong>原来的位置不保留</strong>，会被下面的元素占据</li>
-</ul>
-</li>
-<li><p>格式</p>
-<ul>
-<li>position:absolute</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li>top、bottom、left、right</li>
-</ul>
-</li>
-<li><p>案例</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span>&#123;</span></span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				width: 500px;</span><br><span class="line">				height: 500px;</span><br><span class="line">				border: 1px solid red;</span><br><span class="line">				position: relative;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span> <span class="selector-tag">div</span>&#123;</span></span><br><span class="line">				width: 100px;</span><br><span class="line">				height: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_01</span>&#123;</span></span><br><span class="line">				background: red;</span><br><span class="line">				position: absolute;</span><br><span class="line">				top: 50px;</span><br><span class="line">				left: 50px;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_02</span>&#123;</span></span><br><span class="line">				background: blue;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_01"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_02"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src= "/img/loading.gif" data-src="/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/absolute.png" alt="absolute"></p>
-</li>
-</ol>
-<h2 id="二、相对定位"><a href="#二、相对定位" class="headerlink" title="二、相对定位"></a>二、相对定位</h2><ol>
-<li><p>定义</p>
-<ul>
-<li><p>相对于自身来进行定位，即<strong>参考对象是自身</strong></p>
-</li>
-<li><p>自身<strong>位置保留</strong>，下面元素不会占据自己的原有位置</p>
-</li>
-</ul>
-</li>
-<li><p>格式</p>
-<ul>
-<li>position:relative</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li>top、bottom、left、right</li>
-</ul>
-</li>
-<li><p>案例</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span>&#123;</span></span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				width: 500px;</span><br><span class="line">				height: 500px;</span><br><span class="line">				border: 1px solid red;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span> <span class="selector-tag">div</span>&#123;</span></span><br><span class="line">				width: 100px;</span><br><span class="line">				height: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_01</span>&#123;</span></span><br><span class="line">				background: red;</span><br><span class="line">				position: relative;</span><br><span class="line">				top: 50px;</span><br><span class="line">				left: 50px;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_02</span>&#123;</span></span><br><span class="line">				background: blue;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_01"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_02"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src= "/img/loading.gif" data-src="/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/relative.png" alt="relative"></p>
-</li>
-</ol>
-<h2 id="三、浮动定位"><a href="#三、浮动定位" class="headerlink" title="三、浮动定位"></a>三、浮动定位</h2><ol>
-<li><p>定义</p>
-<ul>
-<li>相对于浏览器移动，即<strong>参考对象是浏览器</strong></li>
-<li>本身<strong>位置不保留</strong>，会被下面元素占据自身位置</li>
-</ul>
-</li>
-<li><p>格式</p>
-<ul>
-<li>position:fixed</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li>top、bottom、left、right</li>
-</ul>
-</li>
-<li><p>用途</p>
-<ul>
-<li>锚点</li>
-</ul>
-</li>
-<li><p>案例</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span>&#123;</span></span><br><span class="line">				margin: 0 auto;</span><br><span class="line">				width: 500px;</span><br><span class="line">				height: 500px;</span><br><span class="line">				border: 1px solid red;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.outer</span> <span class="selector-tag">div</span>&#123;</span></span><br><span class="line">				width: 100px;</span><br><span class="line">				height: 100px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_01</span>&#123;</span></span><br><span class="line">				background: red;</span><br><span class="line">				position: relative;</span><br><span class="line">				top: 50px;</span><br><span class="line">				left: 50px;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.inner_02</span>&#123;</span></span><br><span class="line">				background: blue;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"outer"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_01"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner_02"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src= "/img/loading.gif" data-src="/2020/07/25/HTMLCSS---%E5%AE%9A%E4%BD%8D/fixed.png" alt="fixed"></p>
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>Hexo--部署到gitee(码云)</title>
     <url>/2020/07/31/Hexo--%E9%83%A8%E7%BD%B2%E5%88%B0gitee(%E7%A0%81%E4%BA%91)/</url>
     <content><![CDATA[<h1 id="Hexo–部署到gitee-码云"><a href="#Hexo–部署到gitee-码云" class="headerlink" title="Hexo–部署到gitee(码云)"></a>Hexo–部署到gitee(码云)</h1><h2 id="一、使用前提"><a href="#一、使用前提" class="headerlink" title="一、使用前提"></a>一、使用前提</h2><ul>
@@ -245,24 +245,6 @@
 <h2 id="五、干就完事了"><a href="#五、干就完事了" class="headerlink" title="五、干就完事了"></a>五、干就完事了</h2>]]></content>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/07/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Hexo搭建个人博客到github（小白+无坑版）</title>
     <url>/2020/08/05/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%88%B0github%EF%BC%88%E5%B0%8F%E7%99%BD+%E6%97%A0%E5%9D%91%E7%89%88%EF%BC%89/</url>
     <content><![CDATA[<h1 id="Hexo搭建个人博客到github（小白-无坑版）"><a href="#Hexo搭建个人博客到github（小白-无坑版）" class="headerlink" title="Hexo搭建个人博客到github（小白+无坑版）"></a>Hexo搭建个人博客到github（小白+无坑版）</h1><h2 id="一、使用前提"><a href="#一、使用前提" class="headerlink" title="一、使用前提"></a>一、使用前提</h2><ol>
@@ -295,6 +277,144 @@
 </li>
 </ol>
 <h3 id="2、hexo搭建"><a href="#2、hexo搭建" class="headerlink" title="2、hexo搭建"></a>2、hexo搭建</h3><h3 id="3、部署到github"><a href="#3、部署到github" class="headerlink" title="3、部署到github"></a>3、部署到github</h3><h2 id="三、感谢大佬"><a href="#三、感谢大佬" class="headerlink" title="三、感谢大佬"></a>三、感谢大佬</h2>]]></content>
+  </entry>
+  <entry>
+    <title>Oracle</title>
+    <url>/2020/09/20/Oracle/</url>
+    <content><![CDATA[<h1 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h1><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">优点  </span><br><span class="line">	- 风险小，安全性高；</span><br><span class="line">    - 可伸缩性，并行性；</span><br><span class="line">    - 性能高，稳定性强；</span><br><span class="line">缺点</span><br><span class="line">    - 对硬件要求很高；</span><br><span class="line">    - 技术要求性高；</span><br></pre></td></tr></table></figure>
+
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ol>
+<li><p>创建表空间(类似文件夹)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">create tablespace 表间名 datafile <span class="string">'数据文件名'</span> size 表空间大小</span><br><span class="line">create tablespace test_01 datafile <span class="string">'E:\Desktop\workspace\oracle\test_01\test_01.dbf'</span> size <span class="number">2000</span>M;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建用户并授权</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">create user 用户名 identified by 密码 <span class="keyword">default</span> tablespace 表空间表;</span><br><span class="line">create user CodeMao identified by Tiansen123 <span class="keyword">default</span> TABLESPACE test_01;</span><br><span class="line"></span><br><span class="line">GRANT 权限 TO 用户;	</span><br><span class="line">grant connect,resource,dba to CodeMao;</span><br><span class="line">- 权限的种类</span><br><span class="line">    conncet：对表的插入删除、修改和查询</span><br><span class="line">    resource ：创建表、序列和视图等</span><br><span class="line">    dba：管理员权限</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建表</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">create table <span class="title">t_stu</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    stuid number(<span class="number">10</span>)</span> primary key,</span></span><br><span class="line"><span class="function">    stuname <span class="title">varchar2</span><span class="params">(<span class="number">20</span>)</span> not <span class="keyword">null</span>,</span></span><br><span class="line"><span class="function">    stusex <span class="title">varchar2</span><span class="params">(<span class="number">20</span>)</span> <span class="keyword">default</span> '男' <span class="title">check</span><span class="params">(stusex in(<span class="string">'男'</span>,<span class="string">'女'</span>)</span>)</span></span><br><span class="line"><span class="function">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">create table <span class="title">t_course</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    courseid number(<span class="number">10</span>)</span> primary key,</span></span><br><span class="line"><span class="function">    coursename <span class="title">varchar2</span><span class="params">(<span class="number">20</span>)</span> not <span class="keyword">null</span>,</span></span><br><span class="line"><span class="function">    coursetype <span class="title">varchar2</span><span class="params">(<span class="number">4</span>)</span></span></span><br><span class="line"><span class="function">)</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">create table <span class="title">t_score</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">    scoreid number(<span class="number">10</span>)</span> primary key,</span></span><br><span class="line"><span class="function">    stuid <span class="title">number</span><span class="params">(<span class="number">10</span>)</span> references <span class="title">t_stu</span><span class="params">(stuid)</span>,</span></span><br><span class="line"><span class="function">    courseid <span class="title">number</span><span class="params">(<span class="number">10</span>)</span>,</span></span><br><span class="line"><span class="function">    score <span class="title">number</span><span class="params">(<span class="number">10</span>)</span>,</span></span><br><span class="line"><span class="function">    foreign <span class="title">key</span> <span class="params">(courseid)</span> references <span class="title">t_course</span><span class="params">(courseid)</span></span></span><br><span class="line"><span class="function">)</span>;</span><br><span class="line"></span><br><span class="line">- varchar 和 varchar2</span><br><span class="line">    - varchar是sql中的，varchar2是Oracle独有的</span><br><span class="line">    - varchar汉字占两个字符，英文占一个，varchar2 都占<span class="number">2</span>个</span><br><span class="line">    - varchar对空串不处理，varchar2处理成<span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>表记录的操作</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- 查询</span><br><span class="line">    select * from t_stu;</span><br><span class="line">    select * from t_course;</span><br><span class="line">    select * from t_score;</span><br><span class="line">- 增加</span><br><span class="line">    <span class="function">insert into t_stu <span class="title">values</span><span class="params">(<span class="number">1</span>,<span class="string">'小明'</span>,<span class="string">'男'</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_stu <span class="title">values</span><span class="params">(<span class="number">2</span>,<span class="string">'小红'</span>,<span class="string">'女'</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_stu <span class="title">values</span><span class="params">(<span class="number">3</span>,<span class="string">'小李'</span>,<span class="string">'男'</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">insert into t_course <span class="title">values</span><span class="params">(<span class="number">1</span>,<span class="string">'Java'</span>,<span class="string">'1'</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_course <span class="title">values</span><span class="params">(<span class="number">2</span>,<span class="string">'C++'</span>,<span class="string">'1'</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_course <span class="title">values</span><span class="params">(<span class="number">3</span>,<span class="string">'穷查理宝典'</span>,<span class="string">'2'</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_course <span class="title">values</span><span class="params">(<span class="number">4</span>,<span class="string">'关键对话'</span>,<span class="string">'2'</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_course <span class="title">values</span><span class="params">(<span class="number">5</span>,<span class="string">'脑筋急转弯'</span>,<span class="string">'3'</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">insert into t_score <span class="title">values</span><span class="params">(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">99</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_score <span class="title">values</span><span class="params">(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">88</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_score <span class="title">values</span><span class="params">(<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">77</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_score <span class="title">values</span><span class="params">(<span class="number">4</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">66</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_score <span class="title">values</span><span class="params">(<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">55</span>)</span></span>;</span><br><span class="line">    <span class="function">insert into t_score <span class="title">values</span><span class="params">(<span class="number">6</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">44</span>)</span></span>;</span><br><span class="line">- 删除</span><br><span class="line">    delete from t_stu;</span><br><span class="line">    delete from t_course;</span><br><span class="line">    delete from t_score;</span><br><span class="line">- 修改</span><br><span class="line">    update t_stu set stuname=<span class="string">'小红红'</span> where stuname=<span class="string">'小红'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>order by</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- 默认升序</span><br><span class="line">    asc|desc</span><br><span class="line">	select score from t_score order by <span class="number">1</span>;</span><br><span class="line">- 可以使用数字</span><br><span class="line">    select score from t_score order by <span class="number">1</span> desc;</span><br><span class="line">	select score from t_score order by <span class="number">1</span>;</span><br><span class="line">	select score from t_score order by score;</span><br><span class="line">- nulls</span><br><span class="line">    select score from t_score order by score nulls first;</span><br><span class="line">    select score from t_score order by score nulls last;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="6">
+<li><p>distinct</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- 作用：去重</span><br><span class="line">- 用法</span><br><span class="line">    <span class="function">select <span class="title">count</span><span class="params">(distinct stuid)</span> from t_score</span>;</span><br><span class="line">- <span class="keyword">null</span> 只能有一个</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="7">
+<li><p>where</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- 条件查询</span><br><span class="line">- 分类</span><br><span class="line">    - 比较运算符</span><br><span class="line">    	- &gt; &gt;= &lt; &lt;= == != &lt;&gt;</span><br><span class="line">    	select * from t_score where score&gt;<span class="number">60</span>;</span><br><span class="line">    - 逻辑运算符</span><br><span class="line">    	- and or not</span><br><span class="line">        select * from t_score where score&gt;<span class="number">60</span> and stuid = <span class="number">1</span>;</span><br><span class="line">    - 范围查询</span><br><span class="line">    	- between a and b</span><br><span class="line">    	- in</span><br><span class="line">        select * from t_score where score between <span class="number">60</span> and <span class="number">90</span>;</span><br><span class="line">		select * <span class="function">from t_score where score <span class="title">in</span><span class="params">(<span class="number">66</span>,<span class="number">77</span>)</span></span>;</span><br><span class="line">    - 模糊查询</span><br><span class="line">    	- like %|_</span><br><span class="line">    	select * from t_stu where stuname like <span class="string">'小%'</span>;</span><br><span class="line">    - 空查询</span><br><span class="line">    	- is <span class="keyword">null</span></span><br><span class="line">    	- is not <span class="keyword">null</span></span><br><span class="line">        select * from t_score where score is not <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="8">
+<li><p>fetch</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回两行数据 11g版本及以下版本</span></span><br><span class="line">select * from t_stu where rownum&lt;=<span class="number">2</span>  order by stuid;</span><br><span class="line"><span class="comment">// </span></span><br><span class="line">select * from t_stu where fetch next <span class="number">5</span> rows only|with ties</span><br><span class="line">    next == first</span><br><span class="line">    row == row</span><br><span class="line">    only</span><br><span class="line">    with ties 使用必须有order by </span><br><span class="line">    <span class="number">5</span> ==&gt; 偏移量</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><ol>
+<li><p>commit</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- 作用：提交数据</span><br><span class="line">- wirte</span><br><span class="line">    优先级</span><br><span class="line">    WAIT 或 NOWAIT (如果省略，WAIT是默认值)</span><br><span class="line">	IMMEDIATE 或 BATCH(IMMEDIATE是省略时的默认值)</span><br><span class="line">	commit ==&gt; commit write wait immediate;</span><br><span class="line">- comment</span><br><span class="line">    注释</span><br><span class="line">	commit comment <span class="string">'这是一个注释哈哈'</span> ;</span><br><span class="line">- force</span><br><span class="line">    强制提交可能已经损害的事务</span><br><span class="line">    COMMIT FORCE <span class="string">'22.14.67'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>commit</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- 作用：回滚数据</span><br><span class="line">- 形式</span><br><span class="line">    ROLLBACK [ WORK ] [ TO [SAVEPOINT] savepoint_name  | FORCE <span class="string">'string'</span> ];</span><br><span class="line">- work 可以省略，只是为了符合sql标准</span><br><span class="line">-  TO [SAVEPOINT] savepoint_name 回滚到savepoint</span><br><span class="line">- force 强制回滚</span><br><span class="line">    </span><br><span class="line">set transaction name <span class="string">'c01'</span>;</span><br><span class="line"><span class="function">insert into t_stu <span class="title">values</span><span class="params">(<span class="number">5</span>,<span class="string">'小明1'</span>,<span class="string">'男'</span>)</span></span>;</span><br><span class="line">savepoint c01;</span><br><span class="line"><span class="function">insert into t_stu <span class="title">values</span><span class="params">(<span class="number">4</span>,<span class="string">'小明1'</span>,<span class="string">'男'</span>)</span></span>;</span><br><span class="line"><span class="comment">// 默认回滚到事务名称</span></span><br><span class="line">rollback;</span><br><span class="line"><span class="comment">// 回滚到保存点</span></span><br><span class="line">rollback to savepoint c01;</span><br><span class="line">ROLLBACK FORCE <span class="string">'22.14.67'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>transaction</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SET TRANSACTION [ READ ONLY | READ WRITE ]</span><br><span class="line">                [ ISOLATION LEVEL [ SERIALIZE | READ COMMITED ]</span><br><span class="line">                [ USE ROLLBACK SEGMENT <span class="string">'segment_name'</span> ]</span><br><span class="line">                [ NAME <span class="string">'transaction_name'</span> ];</span><br><span class="line">                 </span><br><span class="line">set transaction read only;</span><br><span class="line">set transaction read write;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>lock</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">lock table 表名称 in 级别 [ WAIT 整数秒 | NOWAIT ];</span><br><span class="line">- 根据级别锁定表</span><br><span class="line">wait：它指定数据库将等待(达到指定整数的特定秒数)以获取 DML 锁定。</span><br><span class="line">NOWAIT：它指定数据库不应该等待释放锁。</span><br><span class="line"></span><br><span class="line">LOCK TABLE suppliers IN SHARE MODE NOWAIT;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>lock_mode</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ROW SHARE</td>
+<td>允许同时访问表，但阻止用户锁定整个表以进行独占访问。</td>
+</tr>
+<tr>
+<td>ROW EXCLUSIVE</td>
+<td>允许对表进行并发访问，但阻止用户以独占访问方式锁定整个表并以共享方式锁定表。</td>
+</tr>
+<tr>
+<td>SHARE UPDATE</td>
+<td>允许同时访问表，但阻止用户锁定整个表以进行独占访问。</td>
+</tr>
+<tr>
+<td>SHARE</td>
+<td>允许并发查询，但用户无法更新锁定的表。</td>
+</tr>
+<tr>
+<td>SHARE ROW EXCLUSIVE</td>
+<td>用户可以查看表中的记录，但是无法更新表或锁定<code>SHARE</code>表中的表。</td>
+</tr>
+<tr>
+<td>EXCLUSIVE</td>
+<td>允许查询锁定的表格，但不能进行其他活动。</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h2><ol>
+<li><p>创建外键</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">方式一：</span><br><span class="line">	<span class="function">create table <span class="title">t_score</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        scoreid number(<span class="number">10</span>)</span> primary key,</span></span><br><span class="line"><span class="function">        stuid <span class="title">number</span><span class="params">(<span class="number">10</span>)</span> references <span class="title">t_stu</span><span class="params">(stuid)</span>,</span></span><br><span class="line"><span class="function">        courseid <span class="title">number</span><span class="params">(<span class="number">10</span>)</span>,</span></span><br><span class="line"><span class="function">        score <span class="title">number</span><span class="params">(<span class="number">10</span>)</span>,</span></span><br><span class="line"><span class="function">        CONSTRAINT a foreign <span class="title">key</span> <span class="params">(courseid)</span> references <span class="title">t_course</span><span class="params">(courseid)</span></span></span><br><span class="line"><span class="function">	)</span>;</span><br><span class="line">方式二：</span><br><span class="line">	<span class="function">alter table t_b add constraint a foreign <span class="title">key</span> <span class="params">(aid)</span> references <span class="title">t_a</span><span class="params">(aid)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>级联删除</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">作用：比如student和score，score中的stuid设置了外键级联，那么删除student中stuid中的某个值，score一并删除</span><br><span class="line">方式一：</span><br><span class="line">    <span class="function">create table <span class="title">t_score</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        scoreid number(<span class="number">10</span>)</span> primary key,</span></span><br><span class="line"><span class="function">        stuid <span class="title">number</span><span class="params">(<span class="number">10</span>)</span> references <span class="title">t_stu</span><span class="params">(stuid)</span>,</span></span><br><span class="line"><span class="function">        courseid <span class="title">number</span><span class="params">(<span class="number">10</span>)</span>,</span></span><br><span class="line"><span class="function">        score <span class="title">number</span><span class="params">(<span class="number">10</span>)</span>,</span></span><br><span class="line"><span class="function">        CONSTRAINT a foreign <span class="title">key</span> <span class="params">(courseid)</span> references <span class="title">t_course</span><span class="params">(courseid)</span></span></span><br><span class="line"><span class="function">        on delete cascade</span></span><br><span class="line"><span class="function">	)</span>;</span><br><span class="line">方式二：</span><br><span class="line">    <span class="function">alter table t_b add constraint a foreign <span class="title">key</span> <span class="params">(aid)</span> references <span class="title">t_a</span><span class="params">(aid)</span> on delete cascade</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>删除外键</p>
+</li>
+<li><p>禁用外键</p>
+</li>
+<li><p>启动外键</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">alter table t_b drop constraint a;</span><br><span class="line">alter table t_b disable constraint a;</span><br><span class="line">alter table t_b enable constraint a;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- EXTRACT()</span><br><span class="line">    - 提取年月日时分秒</span><br><span class="line">    eg：<span class="function">SELECT <span class="title">EXTRACT</span><span class="params">(YEAR FROM OrderDate)</span> AS OrderYear FROM Orders</span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function">-<span class="title">ascii</span><span class="params">(<span class="keyword">char</span>)</span></span></span><br><span class="line"><span class="function">    - 返回字符的ascii</span></span><br><span class="line"><span class="function">    - select <span class="title">ascii</span><span class="params">(<span class="string">'b'</span>)</span> from dual</span>;</span><br><span class="line"></span><br><span class="line">-asciistr(string)</span><br><span class="line">    - 如果string是ascii表中的数据就返回原来数组，否则返回\xxxx</span><br><span class="line">    - <span class="function">select <span class="title">asciistr</span><span class="params">(<span class="string">'abc'</span>)</span> from dual</span>;</span><br><span class="line">	- <span class="function">select <span class="title">asciistr</span><span class="params">(<span class="string">'田田'</span>)</span> from dual</span>;</span><br><span class="line"></span><br><span class="line">- chr(number_code)</span><br><span class="line">    - 通过ascii返回对应的字符</span><br><span class="line">    - <span class="function">select <span class="title">chr</span><span class="params">(ascii(<span class="string">'b'</span>)</span>) from dual</span>;</span><br><span class="line"></span><br><span class="line">- compose()</span><br><span class="line">    Unistring值	    结果字符</span><br><span class="line">	unistr(<span class="string">'\0300'</span>)	 重音符(`)</span><br><span class="line">	unistr(<span class="string">'\0301'</span>)	 锐音符(‘)</span><br><span class="line">	unistr(<span class="string">'\0302'</span>)	 (^)</span><br><span class="line">	unistr(<span class="string">'\0303'</span>)	  ~</span><br><span class="line">	unistr(<span class="string">'\0308'</span>)	 变音符(¨)</span><br><span class="line">    <span class="function">select <span class="title">unistr</span><span class="params">(<span class="string">'\0300'</span>)</span> from dual</span>;</span><br><span class="line"></span><br><span class="line">- concat()</span><br><span class="line">    - 连接，和||功能类似</span><br><span class="line">    - 和||的区别</span><br><span class="line">    	- concat只能连接两个字符</span><br><span class="line">    	- || 可以连接多个字符</span><br><span class="line">    <span class="function">select <span class="title">concat</span><span class="params">(<span class="string">'abc'</span>,<span class="string">'cde'</span>)</span> from dual</span>;</span><br><span class="line">	select <span class="string">'abc'</span>||<span class="string">'cde'</span>||<span class="string">'x'</span> from dual;</span><br><span class="line"></span><br><span class="line">- ||</span><br><span class="line">    - 作用：连接多个字符串</span><br><span class="line">    - select <span class="string">'abc'</span>||<span class="string">'cde'</span>||<span class="string">'x'</span> from dual;</span><br><span class="line">	- 连接单引号</span><br><span class="line">        select <span class="string">'let'</span><span class="string">'s'</span> || <span class="string">' me'</span> from dual;</span><br><span class="line">        select <span class="string">''</span><span class="string">''</span> || <span class="string">'b'</span> from dual;</span><br><span class="line"></span><br><span class="line">- convert()</span><br><span class="line">    - 字符集转换</span><br><span class="line">    - convert(字符串，要转化的字符集，[字符串从选的要转化的字符集])</span><br><span class="line"> </span><br><span class="line">- dump()</span><br><span class="line">    - 返回数据类型代码，字符串长度，表达式内部表示形式</span><br><span class="line">    - dump(<span class="string">'tech'</span>)</span><br><span class="line">  	- <span class="function">select <span class="title">dump</span><span class="params">(<span class="string">'tech'</span>)</span> from dual</span>;</span><br><span class="line"></span><br><span class="line">- initcap(string)</span><br><span class="line">    - 将string中的所有单词的第一个字母转换成大写，其他都是小写</span><br><span class="line">    - <span class="function">select <span class="title">initcap</span><span class="params">(<span class="string">'sTRING main'</span>)</span> from dual</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="sql语句的执行顺序"><a href="#sql语句的执行顺序" class="headerlink" title="sql语句的执行顺序"></a>sql语句的执行顺序</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from&#x3D;&#x3D;&gt;join&#x3D;&#x3D;&gt;on&#x3D;&#x3D;&gt;where&#x3D;&#x3D;&gt;group by&#x3D;&#x3D;&gt;avg...&#x3D;&#x3D;&gt;having&#x3D;&#x3D;&gt;select&#x3D;&#x3D;&gt;distinct&#x3D;&#x3D;&gt;order by</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
   </entry>
   <entry>
     <title>weChat</title>
@@ -811,6 +931,24 @@
 </li>
 </ul>
 <h2 id="三、干就完事了！"><a href="#三、干就完事了！" class="headerlink" title="三、干就完事了！"></a>三、干就完事了！</h2>]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/07/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>小程序---如何更换开发者appid？</title>
