@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>技术题 | 嗨，毛毛</title><meta name="description" content="理解并表达JAVA 为什么重写equal()的同时还要重写hasCode()  为了提高效率，因为hascode比较是在equal比较之前执行的，假如说没有重写hasCode，现在set中有1万条数据，再写一条数据就会比较一万次判断是否重复，如果重写了hascode的话，然后通过hash算法看看给的地址的值是否有值  防止如果equal的结果是true还能添加到set集合当中，比如我有一个pers"><meta name="keywords" content="JAVA,'博客','算法'"><meta name="author" content="Code Mao"><meta name="copyright" content="Code Mao"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/2020/10/27/%E6%8A%80%E6%9C%AF%E9%A2%98/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="技术题"><meta property="og:url" content="http://yoursite.com/2020/10/27/%E6%8A%80%E6%9C%AF%E9%A2%98/"><meta property="og:site_name" content="嗨，毛毛"><meta property="og:description" content="理解并表达JAVA 为什么重写equal()的同时还要重写hasCode()  为了提高效率，因为hascode比较是在equal比较之前执行的，假如说没有重写hasCode，现在set中有1万条数据，再写一条数据就会比较一万次判断是否重复，如果重写了hascode的话，然后通过hash算法看看给的地址的值是否有值  防止如果equal的结果是true还能添加到set集合当中，比如我有一个pers"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-10-27T11:44:09.076Z"><meta property="article:modified_time" content="2020-10-27T11:33:23.699Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="next" title="lambda" href="http://yoursite.com/2020/10/14/lambda/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: {"languages":{"author":"作者: Code Mao","link":"链接: ","source":"来源: 嗨，毛毛","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isSidebar: true,
+  postUpdate: '2020-10-27 19:33:23'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">17</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 古语</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#理解并表达"><span class="toc-number">1.</span> <span class="toc-text">理解并表达</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA"><span class="toc-number">2.</span> <span class="toc-text">JAVA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript"><span class="toc-number">3.</span> <span class="toc-text">JavaScript</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JQuery"><span class="toc-number">4.</span> <span class="toc-text">JQuery</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库"><span class="toc-number">5.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用"><span class="toc-number">6.</span> <span class="toc-text">通用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法题"><span class="toc-number">7.</span> <span class="toc-text">算法题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算机网络"><span class="toc-number">8.</span> <span class="toc-text">计算机网络</span></a></li></ol></div></div></div><div class="code-close" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">嗨，毛毛</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 古语</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">技术题</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-10-27 19:44:09"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-10-27</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-10-27 19:33:23"><i class="fas fa-history fa-fw"></i> 更新于 2020-10-27</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="理解并表达"><a href="#理解并表达" class="headerlink" title="理解并表达"></a>理解并表达</h1><h1 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h1><ol>
+<li><p>为什么重写equal()的同时还要重写hasCode()</p>
+<ul>
+<li><p>为了提高效率，因为hascode比较是在equal比较之前执行的，假如说没有重写hasCode，现在set中有1万条数据，再写一条数据就会比较一万次判断是否重复，如果重写了hascode的话，然后通过hash算法看看给的地址的值是否有值</p>
+</li>
+<li><p>防止如果equal的结果是true还能添加到set集合当中，比如我有一个person类值比较name，但是age不同，如果不重写hasCode的话，就会把两个person对象都添加到set中（因为hasCode不同，先比较的hascode）</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>参考博客：<strong><a href="https://blog.csdn.net/qq_35868412/article/details/89380409" target="_blank" rel="noopener">https://blog.csdn.net/qq_35868412/article/details/89380409</a></strong></p>
+<ol start="2">
+<li><p>==和equal的区别</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 默认情况下==和equal是一样的</span><br><span class="line">2. 如果重写了equal方式，他就会按照自己写的逻辑比较</span><br><span class="line">3. String是系统重写了equal方法，所以按照写的方式比较</span><br><span class="line">4. 一般来说，我们一般用==比较基本数据类型，equal来比较引用数据类型</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>abstract 和 interface </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>. 相同点</span><br><span class="line">	- 都不能被实例化</span><br><span class="line"><span class="number">2</span>. 不同点</span><br><span class="line">    - <span class="keyword">abstract</span>有**构造方法**，但是是用来初始化的，<span class="class"><span class="keyword">interface</span>没有构造方法</span></span><br><span class="line"><span class="class">    - <span class="title">interface</span>是用<span class="keyword">implements</span> 来实现的，<span class="title">abstract</span>使用<span class="keyword">extends</span>来实现的</span></span><br><span class="line"><span class="class">    - 子类可以实现多个接口，但是继承是单继承</span></span><br><span class="line"><span class="class">    - 接口的方法必须全部实现，然后抽象类的方法可以选择性的实现。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jdk和jre区别</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. jdk是开发环境，</span><br><span class="line">	可以编译有javac.exe文件</span><br><span class="line">	jvisualVM可以监视cpu，线程的运行</span><br><span class="line">	javadoc.exe 生成开发文档</span><br><span class="line">	keytool.exe 密钥和证书的工具</span><br><span class="line">2. jre是运行环境</span><br><span class="line">	jre中主要有的是dll文件，动态链接库，供操作系统访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>int和Integer的区别</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. int 是基本数据类型，Integer是引用数据类型</span><br><span class="line">2. Integer主要可以解决类型转换的问题</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本数据类型有哪些并且为什么要定义这些基本数据类型</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. byte,char,short,int,long,boolean,float,double</span><br><span class="line">    1    2     2    4   8      1      4      8</span><br><span class="line">2. 每个基本数据类型都占有固定的存储空间，这样可以节空间</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为什么字符串可以字面量赋值？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 首先我们直到字符串是常用的，栈中运行是比较快的，但是字符串长度不固定，这样空间就很可能浪费，所以直接开一个常量值，来存放即可</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保留字，关键字，标识符</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 保留字是系统保留的字，不能够使用，也是关键字</span><br><span class="line">2. 关键字是含有特殊意义的字</span><br><span class="line">3. 标识符就是我们定义的变量名等，命名规则是必须以字母下划线美元符号开头，可以跟数字字母下划线美元符号</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为什么可以Integer b =3;这样赋值</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 从jdk1.5之后就有了自动拆装箱，他就等价于Integer b = new Integer(3);自动装箱</span><br><span class="line">2. 自动拆箱是int a = b;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>面向对象的三大特性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 封装</span><br><span class="line">	- 就是将属性私有化并提供一个对外访问的接口，将数据保护起来</span><br><span class="line">2. 继承</span><br><span class="line">	- 就是子类拥有了父类非私有的属性和方法，并且可以重写，主要是提高代码的复用性</span><br><span class="line">3. 多态</span><br><span class="line">	- 多种变换状态，他有向上转型和向下转型两种，向上就是fu fu = new zi，而向下由此相反，主要是提高代码的灵活性</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>short a = 1; a = a + 1; a += 1;哪个对？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. a = a + 1; 是错的因为1是整形，ashort，必须强转</span><br><span class="line">2. a += 1 ==&gt; a = (short)(a + 1);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如何用sql语句获取系统当前时间</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. select dataname(YY,getdate()) -获取年 sql server支持的</span><br><span class="line">2. select dataname(MM,getdate()) -获取月 sql server支持的</span><br><span class="line">3. select now(); mysql支持的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jq选择器中怎么选择上一个下一个父亲孩子</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">$("p").prev();</span><br><span class="line">$("p").next();</span><br><span class="line">$("p").parent();</span><br><span class="line">$("p").children();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转发((forward))和重定向(sendRedirect)的区别</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 转发是服务器内部实现的，不透明,重定向是服务器外部实现的,透明的</span><br><span class="line">2. 转发是一次请求一次响应，重定向是多次请求多次响应</span><br><span class="line">3. 转发不可以跳转外网，重定向可以跳转外网</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>arraylist和数组定义固定长度，超出下标赋值或者获取会发生声明结果</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. ArrayList</span><br><span class="line">	添加不会报错，但是get获取会报错 IndexOutOfBoundsException</span><br><span class="line">2. 数组</span><br><span class="line">	添加和获取都会报错！ArrayIndexOutOfBoundsException</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>线程同步中，对象的锁在（）情况下持有线程返回 ？B</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">A:当synchronized()语句块执行完后</span><br><span class="line">B:当在synchronized()语句块执行中出现例外（exception）时</span><br><span class="line">C:当持有锁的线程调用该对象的wait()方法时</span><br><span class="line">D:以上都是</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在java语言中，临界区可以是在一个语句块，或者是一个方法，并用(synchronized)关键字标识</p>
+</li>
+<li><p>有关会话跟踪技术描述正确的是</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">A：Cookie是Web服务器发送给客户端的一小段信息，客户端请求时，可以读取该信息发送到服务器端</span><br><span class="line">B：关闭浏览器意味着会话ID丢失，但所有与原会话关联的会话数据仍保留在服务器上，直至会话过期</span><br><span class="line">C：在禁用Cookie时可以使用URL重写技术跟踪会话</span><br><span class="line">D：隐藏表单域将字段添加到HTML表单并在客户端浏览器中显示</span><br><span class="line"></span><br><span class="line">答案：AC</span><br><span class="line">B: 关闭浏览器会话ID不会丢失</span><br><span class="line">D：此表单不在客户端显示</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>会话跟踪的四种方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. url重写技术</span><br><span class="line">2. 隐藏表单域</span><br><span class="line">3. session 服务器端 无限制 安全 消耗性能</span><br><span class="line">4. cookie  浏览器端 最大4k 不安全</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="22">
+<li><p>servlet中设置HTTP响应类型为HTML网页，应使用那种contentType （text/html)</p>
+</li>
+<li><p>get和post请求区别</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. get和post请求其实就是Http协议的两种请求方式</span><br><span class="line">2. Http是根据基于tcp/ip的，tcp相当于一个运输的汽车，http相当于交通规则，贴标签的，比如get，post，http就限定，get吧数据放车顶（url，透明的）并限定2k大小，post数据放车厢（请求体中），安全</span><br><span class="line">3. get是发送一次数据包（header和data一块发送），post是发送两次数据包（一次header，一次data）</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="23">
+<li><p>集合（<strong>答案待更新</strong>）</p>
+<table>
+<thead>
+<tr>
+<th align="center">集合</th>
+<th align="center">线程安全/不安全</th>
+<th align="center">有序/无序</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ArrayList</td>
+<td align="center">不安全</td>
+<td align="center">有序</td>
+</tr>
+<tr>
+<td align="center">LinkedList</td>
+<td align="center">不安全</td>
+<td align="center">有序</td>
+</tr>
+<tr>
+<td align="center">HashSet</td>
+<td align="center"></td>
+<td align="center">无序</td>
+</tr>
+<tr>
+<td align="center">TreeSet</td>
+<td align="center"></td>
+<td align="center">无序</td>
+</tr>
+<tr>
+<td align="center">Queue</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Vector</td>
+<td align="center">安全</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">HashMap</td>
+<td align="center">不安全</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">TreeMap</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">HashTable</td>
+<td align="center">安全</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Properties</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ol start="24">
+<li><p>子类继承父类的静态代码块，代码块，构造的执行顺序</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;System.out.println(<span class="string">"A1:父类静态代码区域"</span>);&#125;</span><br><span class="line">    &#123; System.out.println(<span class="string">"A2：父类非静态代码区域"</span>); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span> </span>&#123;System.out.println(<span class="string">"A3：父类构造器"</span>);&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;System.out.println(<span class="string">"B1:子类静态代码区域"</span>);&#125;</span><br><span class="line">    &#123;System.out.println(<span class="string">"B2：子类非静态代码区域"</span>);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">()</span> </span>&#123;System.out.println(<span class="string">"B3：子类构造器"</span>);&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        B b1 = <span class="keyword">new</span> B();</span><br><span class="line">        System.out.println(<span class="string">"===="</span>);</span><br><span class="line">        B b2 = <span class="keyword">new</span> B();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">结果：</span><br><span class="line">A1:父类静态代码区域</span><br><span class="line">B1:子类静态代码区域</span><br><span class="line">A2：父类非静态代码区域</span><br><span class="line">A3：父类构造器</span><br><span class="line">B2：子类非静态代码区域</span><br><span class="line">B3：子类构造器</span><br><span class="line">====</span><br><span class="line">A2：父类非静态代码区域</span><br><span class="line">A3：父类构造器</span><br><span class="line">B2：子类非静态代码区域</span><br><span class="line">B3：子类构造器</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>servlet实现原理</p>
+</li>
+<li><p>jsp的执行流程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. jsp本质上也是servlet，继承了HttpServlet</span><br><span class="line">2. 执行流程：jsp文件先转换成.java文件，在变成.class文件，最后执行！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cookie和session</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>. cookie  浏览器端  不安全 <span class="number">4</span>k</span><br><span class="line"><span class="number">2</span>. session 服务器端  安全  无限制</span><br><span class="line">为什么要有cookie？</span><br><span class="line">cookie是来存储session发送的sessionId的</span><br><span class="line">因为web是没会话机制的，一次请求就会立马断开，再次请求的时候就不认识了，所以就有了cookie</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ArrayList和LinkedList区别</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>.ArrayList 是顺序存储，LinkedList是链式存储</span><br><span class="line"><span class="number">2</span>.顺序存储查找比较快，但是插入，删除，修改慢</span><br><span class="line">  链式存储查找比较慢，但是插入，删除，修改比较快</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>面向对象的六大原则</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 单一职责原则：一个类只负责一项职责！</span><br><span class="line">2. 开闭原则：对程序的扩展开放，修改关闭！</span><br><span class="line">3. 接口隔离原则：多个隔离的接口是比单个接口的耦合性低！</span><br><span class="line">4. 里氏替换原则：任何基类出现的地方，子类都可以出现！</span><br><span class="line">5. 迪米特原则：一个类尽可能的和其他类减少关系，最好是一个独立的模块！</span><br><span class="line">6. 依赖倒转原则：主要是针对接口编程，依赖抽象而不依赖与具体的实现！</span><br></pre></td></tr></table></figure>
+
+<p>参考博客：<strong><a href="https://www.cnblogs.com/silencer/p/10812417.html" target="_blank" rel="noopener">https://www.cnblogs.com/silencer/p/10812417.html</a></strong></p>
+</li>
+<li><p>Java如何回滚？（<strong>答案不确定</strong>）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>、Connection conn = DataBaseFactory.getDataBase().getConnection();</span><br><span class="line"><span class="number">2</span>、设置conn.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line"><span class="number">3</span>、只有执行conn.commit();才会一起提交，否则不会一起提交  conn.rollback(); 回滚方法</span><br></pre></td></tr></table></figure>
+
+<p>参考博客：<strong><a href="https://blog.csdn.net/zhangjiaqianghh/article/details/82351013?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">https://blog.csdn.net/zhangjiaqianghh/article/details/82351013?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param</a></strong></p>
+</li>
+<li><p>btreehe </p>
+</li>
+<li><p>maven怎么配置</p>
+</li>
+<li><p>git/svn怎么配置</p>
+</li>
+<li><p>工厂模式</p>
+</li>
+<li><p>如何循环遍历数组或者集合</p>
+</li>
+</ol>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ol>
+<li><p>js的全局函数</p>
+<p><img src= "/img/loading.gif" data-src="/2020/10/27/%E6%8A%80%E6%9C%AF%E9%A2%98/js%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0.png" alt></p>
+</li>
+<li><p>鲁棒性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">下列不属于Java语言鲁棒性特点的是</span><br><span class="line">A：java能程序在编译和运行时的错误</span><br><span class="line">B：Java能运行虚拟机实现跨平台</span><br><span class="line">C：Java自己操纵内存减少了内存出错的可能性</span><br><span class="line">D：Java还实现了真数组，避免了覆盖数据类型的可能</span><br><span class="line"></span><br><span class="line">解答：Java鲁棒性的特点如下：Java在编译和运行程序时都要对可能出现的问题进行检查，以防止错误的产生。Java编译器可以查出许多其他语言运行时才能发现的错误。Java不支持指针操作，大大减少了错误发生的可能性。Java具有异常处理的功能，当程序异常时，它能捕获并响应意外情况，以保证程序能稳妥地结束，计算机系统不会崩溃。而Java能运行虚拟机实现跨平台是Java的与平台无关性的特点。所以本题选B。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js内置对象</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. String</span><br><span class="line">2. Number</span><br><span class="line">3. Boolean</span><br><span class="line">4. Array</span><br><span class="line">5. Object</span><br><span class="line">6. Math</span><br><span class="line">7. Function 函数构造器</span><br><span class="line">8. Error</span><br><span class="line">9. RegExp</span><br><span class="line">10. Arguments 函数参数集合</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>看图说话</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;%= page==<span class="keyword">this</span> %&gt;<span class="comment">// 结果是true</span></span><br><span class="line">&lt;% int sum = <span class="number">8</span>;  %&gt;</span><br><span class="line">&lt;%! int sum = <span class="number">1</span>; %&gt;</span><br><span class="line">&lt;%= sum++ %&gt; <span class="comment">// 结果是8</span></span><br><span class="line">&lt;%= <span class="keyword">this</span>.sum++ %&gt;<span class="comment">// 结果是2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+<h1 id="JQuery"><a href="#JQuery" class="headerlink" title="JQuery"></a>JQuery</h1><h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ol>
+<li><p>什么是事务</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">在计算机术语中是指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)。</span><br><span class="line">在关系数据库中，一个事务可以是一条SQL语句，一组SQL语句或整个程序。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事务的四大特性</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">A：原子性，要么全部完成要么全部不完成</span><br><span class="line">C：一致性，事务提交前后保持一致，如果A向B转100，不管转多少次他们总和不变</span><br><span class="line">I：隔离型，事务之间是相互隔离的</span><br><span class="line">D：一致性，一旦提交永久改变</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事务并发产生的问题</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 脏读</span><br><span class="line">	读到未提交的数据，比如事务A修改了数据，还未提交，事务B就读取到了修改后的结构</span><br><span class="line">2. 不可重复读</span><br><span class="line">	一个事务范围内两次读取的结果不一样，比如事务A查询某条数据之后，事务B修改了，A又查询了却结果不一致（主要针对update）</span><br><span class="line">3. 幻读</span><br><span class="line">	根据相同条件查询的结果不一致（主要针对insert）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事务的四种隔离级别</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 读未提交</span><br><span class="line">2. 读已提交，可以解决脏读，oracle默认的隔离级别</span><br><span class="line">3. 可重复度，可以解决不可重复读，mysql默认的隔离级别</span><br><span class="line">4. 序列化，可以解决幻读，比较耗费性能</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>并发控制及解决方案</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 概念</span><br><span class="line">	就是多个用户进程线程同时操作的时候，可能会发生读读，读写，写写，读读没啥问题，那要是写的话是不是就造成问题了。</span><br><span class="line">2. 解决方案</span><br><span class="line">	悲观并发控制：相当于加了个锁，独占资源，锁又读写锁，读锁只能读，写锁能读能写。加锁又会造成死锁，如何解决？抢占资源+时间戳的方式来解决</span><br><span class="line">	乐观并发控制：不是加锁，而是利用并发的思想解决，例如时间戳等</span><br><span class="line">	多版本并发控制：创建多个版本并快速挑选</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>索引的分类</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">1. 普通索引: 加速查询</span><br><span class="line">2. 主键索引: 加速查询+列值唯一且非空+只能有一个</span><br><span class="line">3. 唯一索引: 加速查询+列值唯一</span><br><span class="line">4. 组合索引: 加速查询+小于大于多个单个组合索引拆查询+遵循最左前缀集合(查询的第一个字段必须是建了索引)</span><br><span class="line">5. 全文索引: 主要就是查询关键字的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sql优化</p>
+</li>
+</ol>
+<h1 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h1><p> 1、/和./和../</p>
+<ul>
+<li><p>/：代表根目录，但是<strong>js中不适用</strong></p>
+</li>
+<li><p>./：“.”：代表当前目录</p>
+</li>
+<li><p>../：“..”：代表上一级目录</p>
+</li>
+</ul>
+<h1 id="算法题"><a href="#算法题" class="headerlink" title="算法题"></a>算法题</h1><ol>
+<li><p>分解质因数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.neuedu.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分解质因数</span></span><br><span class="line"><span class="comment"> * eg 90 = 2 * 3 * 3 * 5</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 什么叫质因数？</span></span><br><span class="line"><span class="comment"> * 该数既是质数，也是90的约数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 思路：就是找约数的同时也找质数</span></span><br><span class="line"><span class="comment"> * 约数：number % k = 0</span></span><br><span class="line"><span class="comment"> * 质数：合数的第一个约数是质数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo_05</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> number = scan.nextInt();</span><br><span class="line"></span><br><span class="line">        System.out.print(number + <span class="string">"="</span>);</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (number != <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="comment">// 判断k是不是约数</span></span><br><span class="line">            <span class="comment">// k不用判断指数，因为合数的第一个约数就是质数，并且k从小到大递增的</span></span><br><span class="line">            <span class="keyword">if</span> (number % k == <span class="number">0</span>)&#123;</span><br><span class="line">                number/=k;</span><br><span class="line">                <span class="keyword">if</span> (number == <span class="number">1</span>)&#123;</span><br><span class="line">                    System.out.print(k);</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    System.out.print(k + <span class="string">"*"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>判断字符串中的字符是否存在相同的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.neuedu.test;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断字符串中的字符是否存在相同的</span></span><br><span class="line"><span class="comment"> *  eg: "abbc" 有相同的</span></span><br><span class="line"><span class="comment"> *      "abc" 没有相同的</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  思路：O(n)</span></span><br><span class="line"><span class="comment"> *      因为一般ascii理论上只有256个字符，所有如果s的长度大于256 必定有重复</span></span><br><span class="line"><span class="comment"> *      如果小于256，定义一个256长的boolean数组，默认false</span></span><br><span class="line"><span class="comment"> *      求每个字符的ascii 然后将对应的下标的 值改成 true 第二次还是true 的话则说明是相同的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo_06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="string">"abc"</span>;</span><br><span class="line">        System.out.println(unique(s)?<span class="string">"没有相同的"</span>:<span class="string">"有相同的"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">unique</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.length() &gt; <span class="number">256</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span>[] b = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">256</span>];<span class="comment">// 默认都是false</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> c = s.charAt(i);</span><br><span class="line">            <span class="keyword">if</span> (b[c]) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            b[c] = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>最大连续和</p>
+</li>
+<li><p>最少移动几次数组有序</p>
+</li>
+</ol>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><ol>
+<li><p>http协议有几层？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">物理层：定义传输介质的特性</span><br><span class="line">数据链路层程：定义单个路由的传输方式</span><br><span class="line">网络层：定义路由的实现方式</span><br><span class="line">传输层：选择差错恢复协议还是无参错恢复协议</span><br><span class="line">会话层：定义会话的开始，控制和结束</span><br><span class="line">表示层：定义数据的格式和加密</span><br><span class="line">应用层：应用之间的相互通信</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ol>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Code Mao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/10/27/%E6%8A%80%E6%9C%AF%E9%A2%98/">http://yoursite.com/2020/10/27/%E6%8A%80%E6%9C%AF%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com" target="_blank">嗨，毛毛</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/10/14/lambda/"><img class="next-cover" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">lambda</div></div></a></div></nav><hr><div id="post-comment"><div class="comment-head"><div class="comment-headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div class="comments-items-1" data-name="Valine"><div class="vcomment" id="vcomment"></div><script>function loadvaline () {  
+  var requestSetting = function (from,set) {
+    var from = from
+    var setting = set.split(',').filter(function(item){
+    return from.indexOf(item) > -1
+    });
+    setting = setting.length == 0 ? from :setting;
+    return setting
+  }
+
+  var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+  var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+  function initValine () {
+    window.valine = new Valine({
+      el:'#vcomment',
+      appId: 'eg5a7jo5eLWGANcqyuiW4yef-gzGzoHsz',
+      appKey: 'OYXz3MhVaHEHVmt53Mwa1Yfw',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: guestInfo,
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      requiredFields: requiredFields
+    });
+  }
+  loadScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || false) {
+  window.addEventListener('load', loadvaline)
+}
+else {
+  function loadOtherComment () {
+    loadvaline()
+  }
+}</script></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Code Mao</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script defer id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script></body></html>
